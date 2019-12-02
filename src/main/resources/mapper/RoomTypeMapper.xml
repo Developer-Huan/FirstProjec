@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.RoomTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.example.entity.RoomType" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="room_type_name" property="roomTypeName" jdbcType="VARCHAR" />
+    <result column="room_price" property="roomPrice" jdbcType="REAL" />
+  </resultMap>
+
+  <select id="queryByPrimaryKey" resultMap="BaseResultMap">
+        SELECT * FROM room_type WHERE id=#{id}
+  </select>
+
+  <select id="queryAllByParams" resultMap="BaseResultMap" parameterType="Map">
+        SELECT * FROM room_type
+        <where>
+          <if test="id != null" >
+            AND id = #{id}
+          </if>
+          <if test="roomTypeName != null and roomTypeName != ''" >
+            AND room_type_name = #{roomTypeName}
+          </if>
+          <if test="roomPrice != null">
+            AND room_price = (SELECT CAST(#{roomPrice} AS DECIMAL(10,2)))
+          </if>
+        </where>
+  </select>
+
+
+  <insert id="insert" parameterType="com.example.entity.RoomType" >
+    insert into room_type (id, room_type_name, room_price
+      )
+    values (#{id,jdbcType=INTEGER}, #{roomTypeName,jdbcType=VARCHAR}, #{roomPrice,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.entity.RoomType" >
+    insert into room_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomTypeName != null" >
+        room_type_name,
+      </if>
+      <if test="roomPrice != null" >
+        room_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roomTypeName != null" >
+        #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPrice != null" >
+        #{roomPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

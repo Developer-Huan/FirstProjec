@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.RolesMapper" >
+  <resultMap id="BaseResultMap" type="com.example.entity.Roles" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryByPrimaryKey" resultMap="BaseResultMap">
+        SELECT * FROM roles WHERE id = #{id}
+  </select>
+
+  <select id="queryAllByParams" resultMap="BaseResultMap" parameterType="Map">
+        SELECT * FROM roles
+        <where>
+        </where>
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="Roles">
+        UPDATE roles
+        <set>
+          <if test="roleName != null and roleName != ''" >
+            role_name = #{roleName},
+          </if>
+          <if test="createDate != null" >
+            create_date = #{createDate},
+          </if>
+          <if test="status != null and status != ''" >
+            status = #{status},
+          </if>
+          <if test="flag != null and flag != ''" >
+            flag = #{flag},
+          </if>
+        </set>
+        WHERE id = #{id}
+  </update>
+
+
+
+
+  <insert id="insert" parameterType="com.example.entity.Roles" >
+    insert into roles (id, role_name, create_date, 
+      status, flag)
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.entity.Roles" >
+    insert into roles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

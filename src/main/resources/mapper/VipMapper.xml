@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.VipMapper" >
+  <resultMap id="BaseResultMap" type="com.example.entity.Vip" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="vip_num" property="vipNum" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="vip_rate" property="vipRate" jdbcType="REAL" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryByParams" parameterType="Vip" resultMap="BaseResultMap">
+        SELECT * FROM vip
+        <where>
+          <if test="id != null" >
+            AND id = #{id}
+          </if>
+          <if test="vipNum != null and vipNum != ''" >
+            AND vip_num = #{vipNum}
+          </if>
+          <if test="customerName != null and customerName != ''" >
+            AND customer_name = #{customerName}
+          </if>
+          <if test="vipRate != null" >
+            AND vip_rate = (SELECT CAST(#{vipRate} AS DECIMAL(2,1)))
+          </if>
+          <if test="idcard != null and idcard != ''" >
+            AND idcard = #{idcard}
+          </if>
+          <if test="phone != null and phone !=''" >
+            AND phone = #{phone}
+          </if>
+          <if test="createDate != null" >
+            AND create_date = #{createDate}
+          </if>
+          <if test="gender != null and gender != ''" >
+            AND gender = #{gender}
+          </if>
+        </where>
+  </select>
+  <select id="queryAllByParams" parameterType="Map" resultMap="BaseResultMap">
+    SELECT * FROM vip
+    <where>
+      <if test="idcard != null and idcard != ''">
+            AND idcard like "%"#{idcard}"%"
+      </if>
+      <if test="vipNum != null and vipNum !=''">
+            AND vip_num like "%"#{vipNum}"%"
+      </if>
+      <!--因为map传来的参数为String类型，而数据库是float 如果放到数据库里是不会查询出结果的 所以使用sql语句将其转为float类型-->
+      <if test="vipRate != null and vipRate != ''">
+            AND vip_rate = (SELECT CAST(#{vipRate} AS DECIMAL(2,1)))
+      </if>
+    </where>
+    ORDER BY create_date DESC
+  </select>
+
+  <select id="countByParam" parameterType="Vip" resultType="Integer">
+        SELECT COUNT(*) FROM vip
+        <where>
+          <if test="id != null" >
+            AND id = #{id}
+          </if>
+          <if test="vipNum != null and vipNum != ''" >
+            AND vip_num = #{vipNum}
+          </if>
+          <if test="customerName != null and customerName != ''" >
+            AND customer_name = #{customerName}
+          </if>
+          <if test="vipRate != null" >
+            AND vip_rate = (SELECT CAST(#{vipRate} AS DECIMAL(2,1)))
+          </if>
+          <if test="idcard != null and idcard != ''" >
+            AND idcard = #{idcard}
+          </if>
+          <if test="phone != null and phone !=''" >
+            AND phone = #{phone}
+          </if>
+          <if test="createDate != null" >
+            AND create_date = #{createDate}
+          </if>
+          <if test="gender != null and gender != ''" >
+            AND gender = #{gender}
+          </if>
+        </where>
+  </select>
+
+
+  <update id="updateByPrimaryKey" parameterType="Vip">
+        UPDATE vip
+        <set>
+          <if test="vipNum != null and vipNum != ''" >
+            vip_num = #{vipNum},
+          </if>
+          <if test="customerName != null and customerName != ''" >
+            customer_name  = #{customerName},
+          </if>
+          <if test="vipRate != null" >
+            vip_rate = #{vipRate},
+          </if>
+          <if test="idcard != null and idcard !='' " >
+            idcard  = #{idcard},
+          </if>
+          <if test="phone != null and phone != ''">
+            phone  = #{phone},
+          </if>
+          <if test="createDate != null" >
+            create_date  = #{createDate},
+          </if>
+          <if test="gender != null and gender != ''" >
+            gender = #{gender},
+          </if>
+        </set>
+        WHERE id = #{id}
+  </update>
+
+
+  <insert id="insert" parameterType="com.example.entity.Vip" >
+    insert into vip (id, vip_num, customer_name, 
+      vip_rate, idcard, phone, 
+      create_date, gender)
+    values (#{id,jdbcType=INTEGER}, #{vipNum,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{vipRate,jdbcType=REAL}, #{idcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{gender,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.entity.Vip" >
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="vipNum != null" >
+        vip_num,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="vipRate != null" >
+        vip_rate,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="vipNum != null" >
+        #{vipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipRate != null" >
+        #{vipRate,jdbcType=REAL},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

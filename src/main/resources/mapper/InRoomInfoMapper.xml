@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.InRoomInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.entity.InRoomInfo" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="is_vip" property="isVip" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="REAL" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="room_id" property="roomId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="out_room_status" property="outRoomStatus" jdbcType="VARCHAR" />
+    <association property="rooms" column="room_id" select="com.example.mapper.RoomsMapper.queryByPrimaryKey"/>
+  </resultMap>
+
+  <select id="queryAllByParams" resultMap="BaseResultMap" parameterType="Map">
+        SELECT * FROM in_room_info WHERE status=1 ORDER BY id DESC
+  </select>
+
+  <select id="queryByPrimaryKey" resultMap="BaseResultMap">
+        SELECT * FROM in_room_info where id = #{id}
+  </select>
+
+  <delete id="deleteByPrimaryKey">
+        DELETE FROM in_room_info WHERE id=#{id}
+  </delete>
+
+  <update id="updateByPrimaryKey" parameterType="InRoomInfo">
+        UPDATE in_room_info
+        <set>
+          <if test="customerName != null and customerName != ''" >
+            customer_name = #{customerName},
+          </if>
+          <if test="gender != null" >
+            gender = #{gender},
+          </if>
+          <if test="isVip != null" >
+            is_vip = #{isVip},
+          </if>
+          <if test="idcard != null" >
+            idcard = #{idcard},
+          </if>
+          <if test="phone != null" >
+            phone = #{phone},
+          </if>
+          <if test="money != null" >
+            money = #{money},
+          </if>
+          <if test="createDate != null" >
+            create_date = #{createDate},
+          </if>
+          <if test="roomId != null" >
+            room_id = #{roomId},
+          </if>
+          <if test="status != null" >
+            status = #{status},
+          </if>
+          <if test="outRoomStatus != null" >
+            out_room_status = #{outRoomStatus},
+          </if>
+        </set>
+        WHERE id=#{id}
+  </update>
+
+  <insert id="insert" parameterType="com.example.entity.InRoomInfo" >
+    insert into in_room_info (id, customer_name, gender, 
+      is_vip, idcard, phone, 
+      money, create_date, room_id, 
+      status, out_room_status)
+    values (#{id,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{isVip,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{money,jdbcType=REAL}, #{createDate,jdbcType=TIMESTAMP}, #{roomId,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{outRoomStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.entity.InRoomInfo" >
+    insert into in_room_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="isVip != null" >
+        is_vip,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="outRoomStatus != null" >
+        out_room_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="isVip != null" >
+        #{isVip,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="outRoomStatus != null" >
+        #{outRoomStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
