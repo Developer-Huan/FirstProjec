@@ -16,7 +16,7 @@ layui.use(['jquery','form','table','laydate','layer'],function () {
         table.render({
             elem: '#vipTableId',
             height: 512,
-            url: 'vip/queryOfPageByParams.lh',
+            url: 'vip/queryOfPageByParams',
             where: params,
             limit: 5,
             limits: [3,5,8,10],
@@ -76,7 +76,7 @@ layui.use(['jquery','form','table','laydate','layer'],function () {
                     var dataJson = formData.field;
                     dataJson["id"] = data.id;
                     $.ajax({
-                        url:"vip/updateByPrimaryKey.lh",
+                        url:"vip/updateByPrimaryKey",
                         type:"POST",
                         dataType:"text",
                         data:dataJson,

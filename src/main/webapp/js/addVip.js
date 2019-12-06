@@ -18,7 +18,7 @@ layui.use(['jquery','form'],function () {
             }else{
                 $("#idcard").blur(function () {
                     $.ajax({
-                        url:"vip/isExisted.lh",
+                        url:"vip/isExisted",
                         type:"post",
                         dataType:"text",
                         async:false,
@@ -48,7 +48,7 @@ layui.use(['jquery','form'],function () {
                 layer.tips("手机号格式错误!","#phone",{tips:[2,"#fc3120"],time:3000});
             }else{
                 $.ajax({
-                    url:"vip/isExisted.lh",
+                    url:"vip/isExisted",
                     type:"post",
                     dataType:"text",
                     data:{"phone":phoneValue},
@@ -86,7 +86,7 @@ layui.use(['jquery','form'],function () {
             if (isIdCard && isPhone){
                 var data = formData.field;
                 $.ajax({
-                    url:"vip/insertSelective.lh",
+                    url:"vip/insertSelective",
                     type:"post",
                     dataType:"text",
                     data:data,

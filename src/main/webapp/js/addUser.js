@@ -12,7 +12,7 @@ layui.use(['jquery','form'],function () {
     //加载权限的下拉框
     function loadRolesSelect() {
         $.ajax({
-            url:"roles/queryAllByParams.lh",
+            url:"roles/queryAllByParams",
             type:"post",
             dataType:"json",
             success:function (data) {
@@ -55,7 +55,7 @@ layui.use(['jquery','form'],function () {
                paramsJson["useStatus"] = 1;
                paramsJson["createDate"] = getStringOfDate(new Date());
                $.ajax({
-                   url : "user/insertSelective.lh",
+                   url : "user/insertSelective",
                    type:"post",
                    dataType:"text",
                    data:paramsJson,
@@ -110,7 +110,7 @@ layui.use(['jquery','form'],function () {
         //访问数据库看该用户是否存在
         var isUsername = false;
         $.ajax({
-            url : "user/checkUsername.lh",
+            url : "user/checkUsername",
             type:"post",
             dataType:"text",
             async:false,

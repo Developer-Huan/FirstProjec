@@ -18,7 +18,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
             elem: '#userTableId',
             height: 512,
             where: params,
-            url: 'user/queryOfPageByParams.lh',
+            url: 'user/queryOfPageByParams',
             limit: 5,
             limits: [3,5,8,10],
             page: true,

@@ -31,7 +31,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 
 						<c:forEach items="${map.authority}" var="auth">
 							<dd>
-								<a class="hp-tab-add" hp-href="${auth.authorityUrl}.lh" href="javascript:;" >${auth.authorityName}</a>
+								<a class="hp-tab-add" hp-href="${auth.authorityUrl}" href="javascript:;" >${auth.authorityName}</a>
 							</dd>
 						</c:forEach>
 					</dl>
@@ -103,7 +103,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 
 						<c:forEach items="${map.authority}" var="auth">
 							<dd>
-								<a class="hp-tab-add" hp-href="${auth.authorityUrl}.lh" href="javascript:;" >${auth.authorityName}</a>
+								<a class="hp-tab-add" hp-href="${auth.authorityUrl}" href="javascript:;" >${auth.authorityName}</a>
 							</dd>
 						</c:forEach>
 					</dl>

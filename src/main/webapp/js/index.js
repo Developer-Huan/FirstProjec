@@ -38,12 +38,12 @@ layui.use(['element', 'carousel','hpTheme', 'hpTab', 'hpLayedit', 'hpRightMenu']
     $("#exit").click(function () {
     	layer.confirm("是否退出?",function (index) {
 			$.ajax({
-				url:"user/exitUser.lh",
+				url:"user/exitUser",
 				type:"post",
 				dataType:"text",
 				success:function(data){
 					if (data == "success"){
-						window.location="model/toLogin.lh";
+						window.location="model/toLogin";
 					}else{
 						layer.msg("退出错误!");
 					}

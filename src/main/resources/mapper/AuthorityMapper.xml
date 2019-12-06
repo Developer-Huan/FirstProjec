@@ -14,7 +14,7 @@
         <where>
             <if test="username != null and username != ''">
               id IN (SELECT auth_id FROM role_auth
-              WHERE role_id = (SELECT role_id FROM USER
+              WHERE role_id = (SELECT role_id FROM user
               WHERE username = #{username}))
             </if>
             <if test="parent != null ">

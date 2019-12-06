@@ -24,7 +24,7 @@ layui.use(['jquery','form','table','laydate','layer'],function () {
          */
         $("#verifyCode").blur(function () {
             $.ajax({
-                url:"login/checkVerifyCode.lh",
+                url:"login/checkVerifyCode",
                 type:"POST",
                 dataType:"text",
                 data:{"checkCode":$(this).val()},
@@ -50,13 +50,13 @@ layui.use(['jquery','form','table','laydate','layer'],function () {
             console.log(formData.field);
             if (isSubmit){
                 $.ajax({
-                    url:"user/loginCheck.lh",
+                    url:"user/loginCheck",
                     type:"POST",
                     dataType:"text",
                     data:formData.field,
                     success:function (data) {
                         if (data == "success"){
-                            window.location="authority/authList.lh";
+                            window.location="authority/authList";
                         }else{
                             layer.msg("账户名或者密码错误!");
                         }

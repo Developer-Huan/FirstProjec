@@ -15,7 +15,7 @@ layui.use(['jquery','form','table','laydate'],function () {
         table.render({
             elem: '#ordersTableId',
             height: 512,
-            url: 'orders/queryOfPageByParams.lh',
+            url: 'orders/queryOfPageByParams',
             where: params,
             limit: 5,
             limits: [3,5,8,10],
@@ -67,7 +67,7 @@ layui.use(['jquery','form','table','laydate'],function () {
             if (layEvent == "del"){
                 layer.confirm("确定删除该条记录吗?",function (index) {
                     $.ajax({
-                        url:"orders/updateByPrimaryKey.lh",
+                        url:"orders/updateByPrimaryKey",
                         type:"POST",
                         dataType:"text",
                         data:{"id":data.id,"flag":"0"},
@@ -87,7 +87,7 @@ layui.use(['jquery','form','table','laydate'],function () {
                 });
             }else if (layEvent == "alipay"){
                 //携带数据跳转到支付页面 orderNum(订单编号) 和 orderMoney(要支付的金额)
-                window.open("model/toOrderPay.lh?orderNum="+data.orderNum+"&orderMoney="+data.orderMoney);
+                window.open("model/toOrderPay?orderNum="+data.orderNum+"&orderMoney="+data.orderMoney);
             }
 
         });
@@ -123,7 +123,7 @@ layui.use(['jquery','form','table','laydate'],function () {
                 //当flag为true的时候才发起Ajax请求
                 if (flag){
                     $.ajax({
-                        url:"orders/batchUpdateByPrimaryKey.lh",
+                        url:"orders/batchUpdateByPrimaryKey",
                         type:"post",
                         dataType:"text",
                         data:{"ids":ids},

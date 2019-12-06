@@ -13,7 +13,7 @@ layui.use(['table'],function () {
         table.render({
             elem: '#rolesTableId',
             height: 512,
-            url: 'roles/queryOfPageByParams.lh',
+            url: 'roles/queryOfPageByParams',
             where: params,
             limit: 5,
             limits: [3,5,8,10],
@@ -79,7 +79,7 @@ layui.use(['table'],function () {
             },
             async : {
                 enable : true,
-                url : "roles/queryAllAuthByRoleId.lh?id="+roleId, //访问服务器的路径 带上id 是因为后台需要id来指明要查询的字段
+                url : "roles/queryAllAuthByRoleId?id="+roleId, //访问服务器的路径 带上id 是因为后台需要id来指明要查询的字段
                 autoParam : ["id","name=n", "level=lv"], //能否自动加载
                 otherParam : {"otherParam" : "zTreeAsyncTest"}  //异步数据的样式设计
             }
@@ -101,7 +101,7 @@ layui.use(['table'],function () {
         paramJson["id"] = obj.data.id;
         paramJson["status"] = status;
         $.ajax({
-            url:"roles/updateByPrimaryKey.lh",
+            url:"roles/updateByPrimaryKey",
             type:"post",
             dataType:"text",
             data:paramJson,

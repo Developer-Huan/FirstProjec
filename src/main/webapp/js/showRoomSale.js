@@ -16,7 +16,7 @@ layui.use(['jquery','form','table','laydate','layer'],function () {
         table.render({
             elem: '#roomSaleTableId',
             height: 512,
-            url: 'roomSale/queryOfPageByParams.lh',
+            url: 'roomSale/queryOfPageByParams',
             where: params,
             limit: 5,
             limits: [3,5,8,10],

@@ -17,7 +17,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
     function loadRoomsData() {
         //先获取数据 不分页的数据 queryAllByParams
         $.ajax({
-            url:"rooms/queryAllByParams.lh",
+            url:"rooms/queryAllByParams",
             type:"POST",
             dataType:"json",
             success:function (data) {
@@ -74,7 +74,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
         //对上传图片按钮的监听,layui提供的前台上传文件的方法
         var uploadObj = upload.render({
             elem:"#uploadButtonId", //使用按钮id 将其与本事件绑定
-            url: "rooms/uploadRoomPic.lh", //服务器端的访问路径
+            url: "rooms/uploadRoomPic", //服务器端的访问路径
             field: "file", //文件域字段名(在后台接收的名称)
             before:function (obj) { //上传之前执行的回调函数  obj 表示选择的上传文件的对象
                 //预读本地文件，将其显示到上面的img 标签上面
@@ -146,7 +146,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
                     //刚创建的房屋 其应该是可入住的 roomStatus = "0"
                     roomJson["roomStatus"] = "0";
                     $.ajax({
-                        url:"rooms/insertSelective.lh",
+                        url:"rooms/insertSelective",
                         type:"post",
                         dataType:"text",
                         data:roomJson,
@@ -175,7 +175,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
                 roomJson["id"] = buttonObj.attr("roomId");
                 roomJson["flag"] = "0";
                 $.ajax({
-                    url:"rooms/updateByPrimaryKey.lh",
+                    url:"rooms/updateByPrimaryKey",
                     type:"POST",
                     dataType:"text",
                     data:roomJson,
@@ -218,7 +218,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
                     var updateJson = formData.field;
                     updateJson['id'] =  buttonObj.attr("roomId");
                     $.ajax({
-                        url:"rooms/updateByPrimaryKey.lh",
+                        url:"rooms/updateByPrimaryKey",
                         type:"POST",
                         dataType:"text",
                         data:updateJson,
@@ -238,7 +238,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
             }else if (value == "kong"){
                 //空闲就是将rooms表的roomStatus状态改为0
                 $.ajax({
-                    url:"rooms/updateByPrimaryKey.lh",
+                    url:"rooms/updateByPrimaryKey",
                     type:"POST",
                     dataType:"text",
                     data:{"id":buttonObj.attr("roomId"),"roomStatus":"0"},
@@ -265,7 +265,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
     //该方法用于重新加载下拉框
     function reloadSelect(jqueryId) {
         $.ajax({
-            url:"roomType/queryAllByParams.lh",
+            url:"roomType/queryAllByParams",
             type:"POST",
             dataType:"json",
             success:function (data) {
@@ -293,7 +293,7 @@ layui.use(['jquery','form','table','layer', 'upload'],function () {
         }else{
             //服务端判断是否存在
             $.ajax({
-                url:"rooms/isExisted.lh",
+                url:"rooms/isExisted",
                 type:"post",
                 dataType:"text",
                 async:false,

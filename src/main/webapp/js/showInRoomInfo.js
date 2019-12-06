@@ -22,7 +22,7 @@ layui.use(['jquery','form','table','laydate'],function () {
         table.render({
             elem: '#inRoomInfoTableId',
             height: 512,
-            url: 'inRoomInfo/queryOfPageByParams.lh',
+            url: 'inRoomInfo/queryOfPageByParams',
             limit: 5,
             limits: [3,5,8,10],
             page: true,
@@ -69,7 +69,7 @@ layui.use(['jquery','form','table','laydate'],function () {
                     updateJson["status"] = 0;
 
                     $.ajax({
-                        url:"inRoomInfo/updateByPrimaryKey.lh",
+                        url:"inRoomInfo/updateByPrimaryKey",
                         type:"POST",
                         dataType:"text",
                         data:updateJson,
@@ -114,7 +114,7 @@ layui.use(['jquery','form','table','laydate'],function () {
                      * 因为需要将获取的数据显示到页面上 所以需要同步请求 (异步请求的数据是不被允许在ajax外使用的)
                      */
                     $.ajax({
-                        url:"vip/queryByParams.lh",
+                        url:"vip/queryByParams",
                         type:"POST",
                         dataType:"json",
                         sync:false,
@@ -187,7 +187,7 @@ layui.use(['jquery','form','table','laydate'],function () {
                     console.log(ordersJson);
 
                     $.ajax({
-                        url:"orders/insertSelective.lh",
+                        url:"orders/insertSelective",
                         type:"POST",
                         dataType:"text",
                         data:ordersJson,

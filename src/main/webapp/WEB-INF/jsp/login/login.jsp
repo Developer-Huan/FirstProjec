@@ -63,7 +63,7 @@
         <div class="layui-form-item">
             <input id="verifyCode" class="layui-input" placeholder="验证码(不区分大小写)"
                    type="text" autocomplete="off" style="margin-bottom: 10px;">
-            <p align="center"><img src="login/getVerifyCode.lh" onclick=flushCheckCode(this) alt="点击刷新验证码" style="cursor: hand" /></p>
+            <p align="center"><img src="login/getVerifyCode" onclick=flushCheckCode(this) alt="点击刷新验证码" style="cursor: hand" /></p>
         </div>
         <button type="button" class="layui-btn login_btn" lay-submit="" lay-filter="loginButtonFilter">登录</button>
     </form>

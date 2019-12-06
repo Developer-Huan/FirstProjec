@@ -25,7 +25,7 @@ public class AuthorityController extends BaseController<Authority> {
     public String authList(HttpSession session){
         User user = (User) session.getAttribute("user");
         session.setAttribute("authList",authorityService.authList(user));
-        return "redirect:/model/toIndex.lh";
+        return "redirect:/model/toIndex";
     }
 
 }

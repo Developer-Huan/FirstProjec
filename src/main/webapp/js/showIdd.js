@@ -1,6 +1,6 @@
 var myChart = echarts.init(document.getElementById('main'));
 //数据接口../json/data01.json文件  访问服务器端的数据的路径
-$.get('roomSale/loadIddData.lh').done(function (data) {
+$.get('roomSale/loadIddData').done(function (data) {
     myChart.setOption({
         title: {
             text: '异步数据加载示例'

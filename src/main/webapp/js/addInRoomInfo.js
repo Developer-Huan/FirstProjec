@@ -20,7 +20,7 @@ layui.use(['jquery','form','laydate'],function () {
         roomJson["roomStatus"] = 0;
         console.log(roomJson);
         $.ajax({
-            url:"rooms/queryAllByParams.lh",
+            url:"rooms/queryAllByParams",
             type:"POST",
             dataType:"json",
             data:roomJson,
@@ -83,7 +83,7 @@ layui.use(['jquery','form','laydate'],function () {
             }else{
                 //加载数据
                 $.ajax({
-                    url:"vip/queryByParams.lh",
+                    url:"vip/queryByParams",
                     type:"POST",
                     dataType:"json",
                     data:{"vipNum":$("#vipNum").val()},
@@ -125,14 +125,14 @@ layui.use(['jquery','form','laydate'],function () {
             inRoomInfoJson["outRoomStatus"] = 0;
 
             $.ajax({
-                url:"inRoomInfo/insertSelective.lh",
+                url:"inRoomInfo/insertSelective",
                 type:"POST",
                 dataType:"text",
                 data:inRoomInfoJson,
                 success:function (data) {
                     if (data=="success"){
                         layer.msg("插入成功!");
-                        setTimeout("window.location='model/toShowInRoomInfo.lh'",1000);
+                        setTimeout("window.location='model/toShowInRoomInfo'",1000);
                     }else{
                         layer.msg("插入失败!");
                     }
