@@ -21,10 +21,10 @@
             <if test="roomNum!=null and roomNum != ''">
               AND room_num like "%"#{roomNum}"%"
             </if>
-            <if test="startTime != null">
+            <if test="startTime != null and startTime != ''">
               AND start_date > #{startTime}
             </if>
-            <if test="endTime != null">
+            <if test="endTime != null and startTime != ''">
               AND start_date &lt;#{endTime}
             </if>
         </where>
